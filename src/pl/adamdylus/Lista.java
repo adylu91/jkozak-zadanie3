@@ -1,10 +1,11 @@
 package pl.adamdylus;
 
+import java.io.*;
 import java.util.Arrays;
 import java.util.function.IntFunction;
 import java.util.stream.IntStream;
 
-public class Lista {
+public class Lista implements Serializable {
     private int[] liczby;
     private int pojemnosc;
     private int rozmiar;
@@ -77,6 +78,7 @@ public class Lista {
             for(int i = 0; i < rozmiar; i++){
                 for(int j = i; j < rozmiar; j++){
                         if(i != j && liczby[i] == liczby[j]){
+                            //zapelnij nowa tablice duplikatami
                             arr[arrIncrement] = liczby[i];
                             arrIncrement++;
                             break;
@@ -84,8 +86,16 @@ public class Lista {
                     }
                 }
             for(int i : arr){
-                System.out.println("usuwam: " + i );
+                //wykonaj usuwanie duplikatow
                 usunPierwszy(i);
             }
         }
+
+    public void zapiszDoPliku(String nazwaPliku) throws IOException {
+        ObjectOutputStream o = new ObjectOutputStream(
+                new FileOutputStream(nazwaPliku)
+        );
+        o.writeObject(liczby);
+        o.close();
+    }
 }
