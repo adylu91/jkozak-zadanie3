@@ -20,5 +20,7 @@ public class Main {
             l.dodajElement( (1 << i) );
         }
         l.pisz();
+        l.usunPowtorzenia();
+        l.pisz();
     }
 }

@@ -17,7 +17,7 @@ public class Lista {
 
     public void dodajElement(int liczbaDoDodania){
         if(rozmiar > (pojemnosc-1)){ //czy tablica jest pełna
-            System.out.println("Error! Array is full");
+            System.out.println("Blad! Tablica jest przeprzelniona!");
         }else {
             liczby[rozmiar] = liczbaDoDodania;
             rozmiar++;
@@ -50,7 +50,7 @@ public class Lista {
 
         for(int i=0; i<rozmiar; i++){
             if(liczby[i] == liczba){
-                indexLiczbyDoUsuniecia = liczba-1;
+                indexLiczbyDoUsuniecia = i;
                 czyZnaleziono = true;
                 break;
             };
@@ -72,6 +72,20 @@ public class Lista {
     }
 
     public void usunPowtorzenia(){
-
-    }
+        int[] arr = new int[pojemnosc];
+        int arrIncrement = 0;
+            for(int i = 0; i < rozmiar; i++){
+                for(int j = i; j < rozmiar; j++){
+                        if(i != j && liczby[i] == liczby[j]){
+                            arr[arrIncrement] = liczby[i];
+                            arrIncrement++;
+                            break;
+                        }
+                    }
+                }
+            for(int i : arr){
+                System.out.println("usuwam: " + i );
+                usunPierwszy(i);
+            }
+        }
 }
